@@ -120,7 +120,6 @@
     [self.frontLayerView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
 	[self.backLayerView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
     
-    NSDictionary *views = NSDictionaryOfVariableBindings(_overlayTitle, _leftButton, _rightButton, _pageControl, _gradientView);
     NSMutableArray *constraints = [NSMutableArray array];
     
     // Overlay title.
@@ -129,11 +128,7 @@
     [constraints addObject:@"H:|-54-[_overlayTitle(==212)]-|"];
     
     // Buttons.
-    [self.leftButton setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [self.rightButton setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [constraints addObject:@"V:[_leftButton(==36)]-20-|"];
-    [constraints addObject:@"V:[_rightButton(==36)]-20-|"];
-    [constraints addObject:@"H:|-20-[_leftButton(==_rightButton)]-20-[_rightButton(>=130)]-20-|"];
+    [self setButtonMode:ICETutorialButtonModeTwoButtons];
 
     // PageControl.
     [self.pageControl setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -146,6 +141,13 @@
     [constraints addObject:@"H:|-0-[_gradientView(==320)]-0-|"];
     
     // Set constraints.
+    [self addConstraintsWithVisualFormatFromArray:constraints];
+}
+
+- (void)addConstraintsWithVisualFormatFromArray:(NSArray *)constraints
+{
+    NSDictionary *views = NSDictionaryOfVariableBindings(_overlayTitle, _leftButton, _rightButton, _pageControl, _gradientView);
+    
     for (NSString *string in constraints) {
         [self.view addConstraints:[NSLayoutConstraint
                                    constraintsWithVisualFormat:string
@@ -258,6 +260,39 @@
     return self.currentState;
 }
 
+- (void)setButtonMode:(ICETutorialButtonMode)buttonMode
+{
+    [self.view removeConstraints:self.leftButton.constraints];
+    [self.view removeConstraints:self.rightButton.constraints];
+    
+    NSMutableArray *constraints = [NSMutableArray array];
+    
+    [self.leftButton setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.rightButton setTranslatesAutoresizingMaskIntoConstraints:NO];
+    
+    if (buttonMode == ICETutorialButtonModeSingleButton)
+    {
+        self.rightButton.hidden = YES;
+        
+        [constraints addObject:@"V:[_leftButton(==36)]-20-|"];
+        [constraints addObject:@"H:|-20-[_leftButton]-20-|"];
+        
+    }
+    else if (buttonMode == ICETutorialButtonModeTwoButtons)
+    {
+         self.leftButton.hidden = self.rightButton.hidden = NO;
+
+        [constraints addObject:@"V:[_leftButton(==36)]-20-|"];
+        [constraints addObject:@"V:[_rightButton(==36)]-20-|"];
+        [constraints addObject:@"H:|-20-[_leftButton(==_rightButton)]-20-[_rightButton(>=130)]-20-|"];
+       
+        
+        
+    }
+    
+    [self addConstraintsWithVisualFormatFromArray:constraints];
+    
+}
 
 #pragma mark - Overlay management
 // Setup the Title Label.

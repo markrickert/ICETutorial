@@ -26,6 +26,12 @@ typedef NS_OPTIONS(NSUInteger, ScrollingState) {
     ScrollingStateLooping   = 1 << 2,
 };
 
+typedef enum
+{
+    ICETutorialButtonModeTwoButtons,
+    ICETutorialButtonModeSingleButton
+} ICETutorialButtonMode;
+
 typedef void (^ButtonBlock)(UIButton *button);
 
 @protocol ICETutorialControllerDelegate;
@@ -52,6 +58,8 @@ typedef void (^ButtonBlock)(UIButton *button);
 
 // State.
 - (ScrollingState)getCurrentState;
+
+- (void)setButtonMode:(ICETutorialButtonMode)buttonMode;
 
 @end
 
