@@ -33,6 +33,9 @@ typedef void (^ButtonBlock)(UIButton *button);
 
 @property (nonatomic, assign) BOOL autoScrollEnabled;
 @property (nonatomic, weak) id<ICETutorialControllerDelegate> delegate;
+@property (nonatomic, strong) UILabel *overlayTitle;
+@property (nonatomic, strong) UIButton *leftButton;
+@property (nonatomic, strong) UIButton *rightButton;
 
 // Inits.
 - (instancetype)initWithPages:(NSArray *)pages;
@@ -49,8 +52,6 @@ typedef void (^ButtonBlock)(UIButton *button);
 
 // State.
 - (ScrollingState)getCurrentState;
-
-- (void)setOverlayHidden:(BOOL)hidden;
 
 @end
 

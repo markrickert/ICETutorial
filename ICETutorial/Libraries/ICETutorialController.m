@@ -13,11 +13,7 @@
 @property (nonatomic, strong, readonly) UIImageView *backLayerView;
 @property (nonatomic, strong, readonly) UIImageView *gradientView;
 @property (nonatomic, strong, readonly) UIScrollView *scrollView;
-@property (nonatomic, strong, readonly) UILabel *overlayTitle;
 @property (nonatomic, strong, readonly) UIPageControl *pageControl;
-@property (nonatomic, strong, readonly) UIButton *leftButton;
-@property (nonatomic, strong, readonly) UIButton *rightButton;
-
 @property (nonatomic, assign) ScrollingState currentState;
 @property (nonatomic, strong) NSArray *pages;
 @property (nonatomic, assign) NSInteger currentPageIndex;
@@ -262,10 +258,6 @@
     return self.currentState;
 }
 
-- (void)setOverlayHidden:(BOOL)hidden
-{
-    self.overlayTitle.hidden = hidden;
-}
 
 #pragma mark - Overlay management
 // Setup the Title Label.
