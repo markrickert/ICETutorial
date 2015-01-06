@@ -50,6 +50,8 @@ typedef void (^ButtonBlock)(UIButton *button);
 // State.
 - (ScrollingState)getCurrentState;
 
+- (void)setOverlayHidden:(BOOL)hidden;
+
 @end
 
 @protocol ICETutorialControllerDelegate <NSObject>

@@ -262,6 +262,11 @@
     return self.currentState;
 }
 
+- (void)setOverlayHidden:(BOOL)hidden
+{
+    self.overlayTitle.hidden = hidden;
+}
+
 #pragma mark - Overlay management
 // Setup the Title Label.
 - (void)setOverlayTitle {
