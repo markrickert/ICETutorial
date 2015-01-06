@@ -326,9 +326,9 @@
                   commonStyle:(ICETutorialLabelStyle *)commonStyle
                         index:(NSUInteger)index {
     // SubTitles.
-    UILabel *overlayLabel = [[UILabel alloc] initWithFrame:CGRectMake((index * self.view.frame.size.width),
+    UILabel *overlayLabel = [[UILabel alloc] initWithFrame:CGRectMake((index * self.view.frame.size.width) + 20.0f,
                                                                       self.view.frame.size.height - [commonStyle offset],
-                                                                      self.view.frame.size.width,
+                                                                      self.view.frame.size.width - 40.0f,
                                                                       TUTORIAL_LABEL_HEIGHT)];
     [overlayLabel setNumberOfLines:[commonStyle linesNumber]];
     [overlayLabel setBackgroundColor:[UIColor clearColor]];
