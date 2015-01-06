@@ -325,6 +325,8 @@
 - (void)overlayLabelWithStyle:(ICETutorialLabelStyle *)style
                   commonStyle:(ICETutorialLabelStyle *)commonStyle
                         index:(NSUInteger)index {
+    
+
     // SubTitles.
     UILabel *overlayLabel = [[UILabel alloc] initWithFrame:CGRectMake((index * self.view.frame.size.width) + 20.0f,
                                                                       self.view.frame.size.height - [commonStyle offset],
