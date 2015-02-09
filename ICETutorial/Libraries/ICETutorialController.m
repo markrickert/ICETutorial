@@ -137,9 +137,9 @@
 
     // GradientView.
     [self.gradientView setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [constraints addObject:@"V:[_gradientView(==200)]-0-|"];
-    [constraints addObject:@"H:|-0-[_gradientView(==320)]-0-|"];
     
+    [constraints addObject:@"V:|-0-[_gradientView(>=200)]-0-|"];
+    [constraints addObject:@"H:|-0-[_gradientView(>=320)]-0-|"];
     // Set constraints.
     [self addConstraintsWithVisualFormatFromArray:constraints];
 }
